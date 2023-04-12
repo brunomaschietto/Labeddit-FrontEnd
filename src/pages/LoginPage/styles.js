@@ -64,6 +64,22 @@ export const StylizedButton = styled.button`
   font-style: normal;
 `;
 
+export const StylizedButtonSignup = styled.button`
+  gap: 10px;
+  width: 365px;
+  height: 51px;
+  background: #FFF;
+  border-radius: 27px;
+  border: 1px solid #FE7E02;
+  cursor: pointer;
+  font-family: "Noto Sans";
+  font-size: 18px;
+  font-weight: 700;
+  color: #f9b24e;
+  line-height: 24.52px;
+  font-style: normal;
+`;
+
 export const Line = styled.hr`
   width: 363.01px;
   height: 0px;
