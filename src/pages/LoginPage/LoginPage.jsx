@@ -20,7 +20,7 @@ import { goToHomePage, goToSignupPage } from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import axios from "axios";
-import { BASE_URL } from "../../constants/BASE_URL";
+import { BASE_URL } from "../../constants/url";
 
 const LoginPage = () => {
   const navigate = useNavigate();

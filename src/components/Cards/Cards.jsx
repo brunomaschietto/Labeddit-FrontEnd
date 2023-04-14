@@ -15,29 +15,27 @@ import comments from "../../assets/comments.svg";
 import { useNavigate } from "react-router-dom";
 import { goToPostPage } from "../../routes/coordinator";
 
-const Cards = () => {
+const Cards = (props) => {
   const navigate = useNavigate();
+  const { post } = props;
+  // console.log(post)
   return (
     <CardsStyle>
       <DivFP>
-        <FP>Enviado por: brunomaschietto</FP>
+        <FP>{post.creator.name}</FP>
       </DivFP>
       <DivSP>
         <SP>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ducimus
-          debitis eligendi ratione sapiente sint et in Lorem ipsum dolor, sit
-          amet consectetur adipisicing elit. Ratione vel non sint, odit, ipsum
-          minus dolorem alias facilis eligendi suscipit voluptates fugit! Est
-          quae veniam alias blanditiis voluptas, doloribus a!
+          {post.content}
         </SP>
       </DivSP>
       <DivVectors>
         <ImgVector src={upVector} />
-        <PLikes>150</PLikes>
+        <PLikes>{post.likes}</PLikes>
         <ImgVector src={downVector} />
-        <PLikes>2</PLikes>
+        <PLikes>{post.dislikes}</PLikes>
         <ImgVector onClick={() => goToPostPage(navigate)} src={comments} />
-        <PLikes>4</PLikes>
+        <PLikes>{post.comments}</PLikes>
       </DivVectors>
     </CardsStyle>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Header from "../../components/Header/Header";
 import {
   DivInput,
@@ -22,9 +22,39 @@ import {
 import lowBar from "../../assets/lowBar.svg";
 import { useNavigate } from "react-router-dom";
 import GrayHeader from "../../components/SecondHeader/GrayHeader";
+import { GlobalContext } from "../../contexts/GlobalContext";
+import axios from "axios";
+import { BASE_URL } from "../../constants/url";
+import { goToHomePage } from "../../routes/coordinator";
 
 const SignupPage = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const context = useContext(GlobalContext);
+  const [form, setForm] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const onChangeForm = (event) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
+  };
+
+  const signUp = async () => {
+    try {
+      let body = {
+        name: form.name,
+        email: form.email,
+        password: form.password,
+      };
+      const response = await axios.post(`${BASE_URL}/users/signup`, body);
+      window.localStorage.setItem("labeddit-token", response.data.token);
+      goToHomePage(navigate);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <DivMainLogin>
       <Header />
@@ -34,9 +64,9 @@ const SignupPage = () => {
       </DivTexto>
       <DivFlexSignup>
         <DivInput>
-          <StylizedInput placeholder="Apelido" />
-          <StylizedInput placeholder="Email" />
-          <StylizedInput placeholder="Senha" />
+          <StylizedInput value={form.name} name="name" onChange={onChangeForm} placeholder="Apelido" required/>
+          <StylizedInput value={form.email} type="email" name="email" onChange={onChangeForm} placeholder="Email" required/>
+          <StylizedInput value={form.password} type="password" name="password" onChange={onChangeForm} placeholder="Senha" required/>
         </DivInput>
       </DivFlexSignup>
       <DivTextoPol>
@@ -52,9 +82,9 @@ const SignupPage = () => {
           </SpanEditado>
         </DivCheckbox>
       </DivTextoPol>
-      <StylizedButton>Cadastrar</StylizedButton>
+      <StylizedButton onClick={() => signUp()}>Cadastrar</StylizedButton>
       <DivImg>
-        <img src={lowBar}/>
+        <img src={lowBar} />
       </DivImg>
     </DivMainLogin>
   );
