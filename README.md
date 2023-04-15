@@ -37,7 +37,7 @@ Nesse projeto foram aplicados os conceitos de implementação de segurança e c�
 ## 🎯 **Demonstração**
 
 [Link Back-End](https://github.com/brunomaschietto/Labeddit-BackEnd) </br>
-[Link demonstração](https://documenter.getpostman.com/view/24460718/2s93RXrVhq)
+[Link demonstração](https://labeddit-front-end-three.vercel.app/)
 
 ## 🕹 **Como rodar esse projeto?**
 
