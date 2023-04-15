@@ -14,7 +14,7 @@ const GrayHeader = () => {
   };
   return (
     <MiniDiv>
-      {location.pathname === "/postpage" ? (
+      {location.pathname === "/commentPage" ? (
         <ImgX src={vectorX} onClick={() => goToHomePage(navigate)} />
       ) : (
         ""

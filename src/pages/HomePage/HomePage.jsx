@@ -74,7 +74,7 @@ const HomePage = () => {
         <Line />
       </DivButton>
       {posts.map((post) => {
-        return <Cards key={post.id} post={post} />;
+        return <Cards key={post.id} post={post} findPosts={findPosts}/>;
       })}
     </DivMainLogin>
   );

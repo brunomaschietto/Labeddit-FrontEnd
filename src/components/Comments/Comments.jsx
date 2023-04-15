@@ -1,28 +1,62 @@
 import React from "react";
-import { CardsStyle, DivFP, DivSP, DivVectors, FP, ImgVector, PLikes, SP } from "../Cards/styles";
+import {
+  CardsStyle,
+  DivFP,
+  DivSP,
+  DivVectors,
+  FP,
+  ImgVector,
+  PLikes,
+  SP,
+} from "../Cards/styles";
 import upVector from "../../assets/upVector.svg";
 import downVector from "../../assets/downVector.svg";
-import comments from "../../assets/comments.svg";
 
-const Comments = () => {
+const Comments = (props) => {
+  const { comment, findComments } = props;
+  const like = async (postId) => {
+    try {
+      let body = {
+        like: 1,
+      };
+      await axios.put(`${BASE_URL}/posts/${postId}/like`, body, {
+        headers: {
+          Authorization: window.localStorage.getItem("labeddit-token"),
+        },
+      });
+      findPosts();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const dislike = async (postId) => {
+    try {
+      let body = {
+        like: 0,
+      };
+      await axios.put(`${BASE_URL}/posts/${postId}/like`, body, {
+        headers: {
+          Authorization: window.localStorage.getItem("labeddit-token"),
+        },
+      });
+      findPosts();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <CardsStyle>
       <DivFP>
-        <FP>Enviado por: brunomaschietto</FP>
+        <FP>Enviado por: {comment.creator.name}</FP>
       </DivFP>
       <DivSP>
-        <SP>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ducimus
-          debitis eligendi ratione sapiente sint et in
-        </SP>
+        <SP>{comment.content}</SP>
       </DivSP>
       <DivVectors>
         <ImgVector src={upVector} />
-        <PLikes>150</PLikes>
+        <PLikes>{comment.like}</PLikes>
         <ImgVector src={downVector} />
-        <PLikes>2</PLikes>
-        <ImgVector src={comments} />
-        <PLikes>4</PLikes>
+        <PLikes>{comment.like}</PLikes>
       </DivVectors>
     </CardsStyle>
   );

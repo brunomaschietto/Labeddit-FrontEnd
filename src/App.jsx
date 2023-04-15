@@ -5,14 +5,17 @@ import { GlobalContext } from "./contexts/GlobalContext";
 function App() {
   const [users, setUsers] = useState([]);
   const [posts, setPosts] = useState([]);
-  const [isAuth, setIsAuth] = useState(false)
+  const [comments, setComments] = useState([]);
+  const [isAuth, setIsAuth] = useState(false);
   const context = {
     users,
     setUsers,
     posts,
     setPosts,
+    comments,
+    setComments,
     isAuth,
-    setIsAuth
+    setIsAuth,
   };
 
   return (
